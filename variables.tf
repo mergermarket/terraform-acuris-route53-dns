@@ -29,8 +29,4 @@ variable "alb_zone_id" {
   default     = ""
 }
 
-variable depends_on {
-  description = "Emulate depends_on"
-  type        = "list",
-  default     = []
-}
+
