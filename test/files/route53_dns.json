@@ -1,0 +1,49 @@
+{
+  "resource_changes": [
+    {
+      "address": "module.route53_dns.aws_route53_record.dns_record[0]",
+      "module_address": "module.route53_dns",
+      "mode": "managed",
+      "type": "aws_route53_record",
+      "name": "dns_record",
+      "index": 0,
+      "provider_name": "aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "alias": [],
+          "failover_routing_policy": [],
+          "geolocation_routing_policy": [],
+          "health_check_id": null,
+          "latency_routing_policy": [],
+          "multivalue_answer_routing_policy": null,
+          "name": "dev-test.dev.test.com",
+          "records": [
+            "target.test.com"
+          ],
+          "set_identifier": null,
+          "ttl": 60,
+          "type": "CNAME",
+          "weighted_routing_policy": [],
+          "zone_id": "TESTZONEID"
+        },
+        "after_unknown": {
+          "alias": [],
+          "allow_overwrite": true,
+          "failover_routing_policy": [],
+          "fqdn": true,
+          "geolocation_routing_policy": [],
+          "id": true,
+          "latency_routing_policy": [],
+          "records": [
+            false
+          ],
+          "weighted_routing_policy": []
+        }
+      }
+    }
+  ]
+}

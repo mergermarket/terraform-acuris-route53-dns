@@ -21,7 +21,7 @@ variable "ttl" {
 
 variable "alias" {
   description = "Create an alias rather than a CNAME"
-  default     = "0"
+  default     = false
 }
 
 variable "alb_zone_id" {
@@ -29,4 +29,7 @@ variable "alb_zone_id" {
   default     = ""
 }
 
-
+variable "is_test" {
+  description = "For testing only. Stops the call to AWS for sts"
+  default     = false
+}

@@ -1,0 +1,52 @@
+{
+  "resource_changes": [
+    {
+      "address": "module.route53_dns_alias.aws_route53_record.alb_alias[0]",
+      "module_address": "module.route53_dns_alias",
+      "mode": "managed",
+      "type": "aws_route53_record",
+      "name": "alb_alias",
+      "index": 0,
+      "provider_name": "aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "alias": [
+            {
+              "evaluate_target_health": true,
+              "name": "target.test.com",
+              "zone_id": "ABCDE012345"
+            }
+          ],
+          "failover_routing_policy": [],
+          "geolocation_routing_policy": [],
+          "health_check_id": null,
+          "latency_routing_policy": [],
+          "multivalue_answer_routing_policy": null,
+          "name": "dev-test.dev.test.com",
+          "records": null,
+          "set_identifier": null,
+          "ttl": null,
+          "type": "A",
+          "weighted_routing_policy": [],
+          "zone_id": "TESTZONEID"
+        },
+        "after_unknown": {
+          "alias": [
+            {}
+          ],
+          "allow_overwrite": true,
+          "failover_routing_policy": [],
+          "fqdn": true,
+          "geolocation_routing_policy": [],
+          "id": true,
+          "latency_routing_policy": [],
+          "weighted_routing_policy": []
+        }
+      }
+    }
+  ]
+}

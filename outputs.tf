@@ -1,3 +1,7 @@
+output "rendered" {
+  value = data.template_file.domain.rendered
+}
+
 output "fqdn" {
   value = element(
     compact(
@@ -9,4 +13,3 @@ output "fqdn" {
     0,
   )
 }
-

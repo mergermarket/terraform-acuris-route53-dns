@@ -1,5 +1,11 @@
 data "aws_route53_zone" "dns_domain" {
+  count = var.is_test ? 0 : 1
+
   name = data.template_file.domain.rendered
+}
+
+locals {
+  zone_id = var.is_test ? "TESTZONEID" : element(concat(data.aws_route53_zone.dns_domain.*.zone_id, list("")), 0)
 }
 
 data "template_file" "domain" {
@@ -11,14 +17,10 @@ data "template_file" "domain" {
   }
 }
 
-output "rendered" {
-  value = data.template_file.domain.rendered
-}
-
 resource "aws_route53_record" "dns_record" {
-  count = 1 - var.alias
+  count = var.alias ? 0 : 1
 
-  zone_id = data.aws_route53_zone.dns_domain.zone_id
+  zone_id = local.zone_id
   name    = "${var.env == "live" ? var.name : "${var.env}-${var.name}"}.${data.template_file.domain.rendered}"
 
   type    = "CNAME"
@@ -31,9 +33,9 @@ resource "aws_route53_record" "dns_record" {
 }
 
 resource "aws_route53_record" "alb_alias" {
-  count = var.alias
+  count = var.alias ? 1 : 0
 
-  zone_id = data.aws_route53_zone.dns_domain.zone_id
+  zone_id = local.zone_id
   name    = "${var.env == "live" ? var.name : "${var.env}-${var.name}"}.${data.template_file.domain.rendered}"
   type    = "A"
 
@@ -47,4 +49,3 @@ resource "aws_route53_record" "alb_alias" {
     prevent_destroy = true
   }
 }
-
