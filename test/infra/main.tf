@@ -22,7 +22,7 @@ module "route53_dns" {
   name    = "test"
   env     = "dev"
   target  = "target.test.com"
-  is_test = true
+  zone_id = "TESTZONEID"
 }
 
 module "route53_dns_alias" {
@@ -34,5 +34,5 @@ module "route53_dns_alias" {
   target      = "target.test.com"
   alb_zone_id = "ABCDE012345"
   alias       = "1"
-  is_test     = true
+  zone_id     = "TESTZONEID"
 }

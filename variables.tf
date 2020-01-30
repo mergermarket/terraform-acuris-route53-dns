@@ -29,7 +29,7 @@ variable "alb_zone_id" {
   default     = ""
 }
 
-variable "is_test" {
-  description = "For testing only. Stops the call to AWS for sts"
-  default     = false
+variable "zone_id" {
+  description = "The Route53 zone id of the DNS Domain"
+  default     = ""
 }

@@ -1,11 +1,11 @@
 data "aws_route53_zone" "dns_domain" {
-  count = var.is_test ? 0 : 1
+  count = var.zone_id == "" ? 1 : 0
 
   name = data.template_file.domain.rendered
 }
 
 locals {
-  zone_id = var.is_test ? "TESTZONEID" : element(concat(data.aws_route53_zone.dns_domain.*.zone_id, list("")), 0)
+  zone_id = var.zone_id == "" ? element(concat(data.aws_route53_zone.dns_domain.*.zone_id, list("")), 0) : var.zone_id
 }
 
 data "template_file" "domain" {
